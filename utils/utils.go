@@ -59,3 +59,18 @@ func GetIntFromStrings(vs []string) []int32 {
 
 	return res
 }
+
+// EqualsI -> Compare int slices
+func EqualsI(via []int32, vib []int32) (bool, int32) {
+	if len(via) != len(vib) {
+		return false, -1
+	}
+
+	for i, v := range via {
+		if v != vib[i] {
+			return false, int32(i)
+		}
+	}
+
+	return true, 0
+}
