@@ -23,14 +23,22 @@ func Compute() {
 
 	fmt.Printf("Part1 Solution: %d\n", result[0])
 
-	for i := 0; i <= 12; i++ {
-		numListInt[1] = 12 //int32(i)
-		numListInt[2] = int32(i)
+	var target int32 = 19690720
 
-		result = compileIntCode(numListInt)
+	domain := len(numListInt) - 1
 
-		fmt.Printf("Part2 Candidate(%d, %d): %d\n", 12, i, result[0])
+	for i := 0; i < domain; i++ {
+		for j := 0; j < domain; j++ {
+			numListInt[1] = int32(i)
+			numListInt[2] = int32(j)
+
+			if target == compileIntCode(numListInt)[0] {
+				fmt.Printf("Part2 Solution noun: %d, verb: %d, result: %d", i, j, 100*i+j)
+				break
+			}
+		}
 	}
+
 }
 
 func compileIntCode(code []int32) []int32 {
