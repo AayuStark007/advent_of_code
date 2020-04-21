@@ -19,7 +19,7 @@ func Compute() {
 	utils.Check(err)
 	strInput := string(input)
 
-	numListStr := strings.Split(strInput, "\r\n")
+	numListStr := strings.Split(strInput, "\n")
 	numListInt := utils.GetIntFromStrings(numListStr)
 
 	modFuels := utils.ApplyIToI(numListInt, getFuelForMass)
