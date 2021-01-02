@@ -13,14 +13,31 @@ fn main() {
             .filter_map(Result::ok)
             .collect();
 
-        if let Some((a, b)) = find_pair(nums, &2020) {
+        // Part 1 solution
+        if let Some((a, b)) = find_pair(&nums, &2020) {
             println!("found pair: {}, {}", a, b);
             println!("Part 1: {}", a * b);
+        }
+
+        // Part 2 solution
+
+        // create diff map for each entry
+        // filter the entry from list
+        // find pair for the diff in the filtered map
+
+        for num in nums.iter() {
+            let rem_sum = 2020 - num;
+            let num_filtered: Vec<i32> = nums.clone().into_iter().filter(|&n| n != *num).collect();
+            if let Some((a, b)) = find_pair(&num_filtered, &rem_sum) {
+                println!("found triplet: {}, {}, {}", num, a, b);
+                println!("Part 2: {}", num * a * b);
+                break;
+            }
         }
     }
 }
 
-fn find_pair(list: Vec<i32>, sum: &i32) -> Option<(i32, i32)> {
+fn find_pair(list: &Vec<i32>, sum: &i32) -> Option<(i32, i32)> {
     let mut diff = HashMap::<i32, i32>::new();
     for num in list.iter() {
         if let Some(_) = diff.get(num) {
@@ -30,15 +47,6 @@ fn find_pair(list: Vec<i32>, sum: &i32) -> Option<(i32, i32)> {
     }
 
     return None;
-}
-
-// TODO: move to utils
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
 }
 
 fn read_lines_str<P>(filename: P) -> io::Result<Vec<String>>
