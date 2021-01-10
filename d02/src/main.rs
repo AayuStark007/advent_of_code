@@ -79,20 +79,8 @@ fn validate_data_part1(data: &DBData) -> bool {
 }
 
 fn validate_data_part2(data: &DBData) -> bool {
-    if data.lb - 1 >= data.password.len() as i32 || data.ub - 1 >= data.password.len() as i32 {
-        return false;
-    }
-
     let lb = data.password.chars().nth(data.lb as usize - 1).unwrap();
     let ub = data.password.chars().nth(data.ub as usize - 1).unwrap();
 
-    if (lb == data.letter) && (ub == data.letter) {
-        return false;
-    }
-
-    if (lb == data.letter) || (ub == data.letter) {
-        return true;
-    }
-
-    return false;
+    return (lb == data.letter) ^ (ub == data.letter);
 }
