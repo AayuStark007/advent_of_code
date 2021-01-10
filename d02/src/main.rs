@@ -31,7 +31,7 @@ fn main() {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 struct DBData {
     lb: i32,
     ub: i32,
