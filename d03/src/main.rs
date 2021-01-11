@@ -5,16 +5,10 @@ fn main() {
 
     if let Ok(lines) = read_lines("input.txt") {
         let mut pos: usize = 0;
-        let mut n_tree: usize = 0;
-        for line in lines {
-            let line_str = match line {
-                Ok(line_str) => line_str,
-                Err(e) => panic!(e),
-            };
-            if advance_pos(&line_str, &mut pos) {
-                n_tree += 1;
-            }
-        }
+        let n_tree = lines
+            .filter_map(Result::ok)
+            .filter(|x| advance_pos(x, &mut pos))
+            .count();
 
         println!("Part 1: {}", n_tree);
     }
