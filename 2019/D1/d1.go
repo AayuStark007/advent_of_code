@@ -1,7 +1,7 @@
 package d1
 
 import (
-	"AdventOfCode/utils"
+	"2019/utils"
 	"fmt"
 	"io/ioutil"
 	"math"
@@ -15,7 +15,7 @@ func Compute() {
 		Fuel required(module) = floor(M_mod / 3) - 2
 	*/
 
-	input, err := ioutil.ReadFile("2019/D1/input.txt")
+	input, err := ioutil.ReadFile("./D1/input.txt")
 	utils.Check(err)
 	strInput := string(input)
 

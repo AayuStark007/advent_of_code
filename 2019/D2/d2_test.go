@@ -1,7 +1,7 @@
 package d2
 
 import (
-	"AdventOfCode/utils"
+	"2019/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

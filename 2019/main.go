@@ -1,8 +1,8 @@
 package main
 
 import (
-	d1 "AdventOfCode/2019/D1"
-	d2 "AdventOfCode/2019/D2"
+	d1 "2019/D1"
+	d2 "2019/D2"
 )
 
 func main() {
