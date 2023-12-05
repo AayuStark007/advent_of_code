@@ -1,3 +1,6 @@
+// #define DEBUG_LOGGING
+
+#include "../util.h"
 #include <fstream>
 #include <map>
 #include <math.h>
@@ -27,7 +30,7 @@ int process_part1(string input) {
 }
 
 int process_part2(string input) {
-  printf("For input [%s]:\n", input.c_str());
+  debugf("For input [%s]:\n", input.c_str());
 
   int first = -1;
   int last = -1;
@@ -36,7 +39,7 @@ int process_part2(string input) {
   while (!input.empty()) {
     // if input starts with numeric digit
     if (isdigit(input.front())) {
-      printf("\tfound [%c] => %c\n", input.front(), input.front());
+      debugf("\tfound [%c] => %c\n", input.front(), input.front());
       digit = input.front();
       if (-1 == first) {
         first = digit - '0';
@@ -46,7 +49,7 @@ int process_part2(string input) {
         // if start of input matches known digit word
         if (input.substr(0, it->first.length()).find(it->first.c_str(), 0) !=
             string::npos) {
-          printf("\tfound [%s] => %d\n", it->first.c_str(), it->second);
+          debugf("\tfound [%s] => %d\n", it->first.c_str(), it->second);
           digit = it->second + '0';
           if (-1 == first) {
             first = it->second;
