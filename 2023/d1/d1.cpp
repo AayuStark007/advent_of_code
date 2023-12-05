@@ -1,6 +1,7 @@
 // #define DEBUG_LOGGING
 
 #include "../util.h"
+#include <cassert>
 #include <fstream>
 #include <map>
 #include <math.h>
@@ -32,8 +33,7 @@ int process_part1(string input) {
 int process_part2(string input) {
   debugf("For input [%s]:\n", input.c_str());
 
-  int first = -1;
-  int last = -1;
+  int num = -1;
   char digit;
 
   while (!input.empty()) {
@@ -41,8 +41,8 @@ int process_part2(string input) {
     if (isdigit(input.front())) {
       debugf("\tfound [%c] => %c\n", input.front(), input.front());
       digit = input.front();
-      if (-1 == first) {
-        first = digit - '0';
+      if (-1 == num) {
+        num = digit - '0';
       }
     } else {
       for (auto it = digits.begin(); it != digits.end(); ++it) {
@@ -51,8 +51,8 @@ int process_part2(string input) {
             string::npos) {
           debugf("\tfound [%s] => %d\n", it->first.c_str(), it->second);
           digit = it->second + '0';
-          if (-1 == first) {
-            first = it->second;
+          if (-1 == num) {
+            num = it->second;
           }
           break;
         }
@@ -62,9 +62,8 @@ int process_part2(string input) {
     // remove the first char
     input.erase(0, 1);
   }
-  last = digit - '0';
-
-  return (first * 10) + last;
+  num = (num * 10) + (digit - '0');
+  return num;
 }
 
 int main(int argc, char **argv) {
@@ -81,8 +80,11 @@ int main(int argc, char **argv) {
     sum_part1 += process_part1(input);
     sum_part2 += process_part2(input);
   }
-  printf("Solution for Day1#Part1: %d\n", sum_part1);
-  printf("Solution for Day1#Part2: %d\n", sum_part2);
+  printf("Solution for Day1#Part1: %d\n", sum_part1); // 56049
+  printf("Solution for Day1#Part2: %d\n", sum_part2); // 54530
+
+  assert(sum_part1 == 56049);
+  assert(sum_part2 == 54530);
 
   inputFile.close();
   return 0;
